@@ -1,7 +1,7 @@
 class ConstString {
-  static String menuHome = 'HOME';
-  static String menuAbout = 'ABOUT';
-  static String menuService = 'SERVICE';
-  static String menuPortfolio = 'PORTFOLIO';
-  static String menuContact = 'CONTACT';
+  static String menuHome = 'Home';
+  static String menuAbout = 'About';
+  static String menuService = 'Services';
+  static String menuPortfolio = 'Works';
+  static String menuContact = 'Contact';
 }
