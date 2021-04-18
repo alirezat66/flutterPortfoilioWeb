@@ -76,15 +76,15 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            buildBodyScreen(size, context),
-            buildBodyScreen(size, context),
+            buildHomePage(size, context),
+            buildSkillContactPage(size, context),
           ],
         ),
       ),
     );
   }
 
-  Widget buildBodyScreen(Size size, BuildContext context) {
+  Widget buildHomePage(Size size, BuildContext context) {
     return Container(
         width: size.width,
         height: size.height,
@@ -184,11 +184,7 @@ class _HomePageState extends State<HomePage> {
                                 visible:
                                     ResponsiveController.getScreenSize(size) ==
                                         ScreenSize.small,
-                                child: AutoSizeText(
-                                    'Flutter, Android and IOS Developer',
-                                    maxLines: 2,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1),
+                                child: TitleText(text: ConstString.jobTitle),
                               ),
                               Row(
                                   mainAxisAlignment:
@@ -293,46 +289,18 @@ class _HomePageState extends State<HomePage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '- Introduction',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      .copyWith(
-                                          color: Colors.white.withOpacity(0.6),
-                                          letterSpacing: 2.0),
+                                HeaderText(
+                                  text: '- Introduction',
                                 ),
                                 SizedBox(height: 16),
-                                AutoSizeText(ConstString.jobTitle,
-                                    maxLines: 2,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1),
+                                TitleText(
+                                  text: ConstString.jobTitle,
+                                ),
                                 SizedBox(height: 36),
-                                AutoSizeText(ConstString.description,
-                                    maxLines: 3,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline6
-                                        .copyWith(
-                                            color:
-                                                Colors.white.withOpacity(0.8),
-                                            height: 2.0)),
+                                DescriptionText(text: ConstString.description),
                               ],
                             ),
-                            Row(
-                              children: [
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text('My Story',
-                                      style:
-                                          Theme.of(context).textTheme.button),
-                                ),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(CupertinoIcons.arrow_right,
-                                        color: Theme.of(context).accentColor))
-                              ],
-                            )
+                            WebButton(text: 'My Story'),
                           ],
                         ),
                       ),
@@ -343,5 +311,156 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ));
+  }
+
+  Widget buildSkillContactPage(Size size, BuildContext context) {
+    return Container(
+      width: size.width,
+      height: size.height,
+      color: Theme.of(context).primaryColorDark,
+      child: Row(
+        children: [
+          Container(
+              width: size.width / 2,
+              height: size.height,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 150, vertical: 150),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          HeaderText(text: '- Contact'),
+                          SizedBox(height: 16),
+                          TitleText(text: 'Any Type Of Query & Discussion'),
+                        ],
+                      ),
+                      DescriptionText(text: ConstString.contactDescription),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          WebIconButton(
+                            text: 'Alirezataghizadeh66@gmail.com',
+                            data: FontAwesomeIcons.envelope,
+                          ),
+                          WebIconButton(
+                            text: '+905366526420',
+                            data: FontAwesomeIcons.whatsapp,
+                          ),
+                          WebIconButton(
+                            text: 'alirezat_66',
+                            data: FontAwesomeIcons.telegram,
+                          )
+                        ],
+                      ),
+                    ]),
+              )),
+          Container(width: size.width / 2, height: size.height),
+        ],
+      ),
+    );
+  }
+}
+
+class WebIconButton extends StatelessWidget {
+  final String text;
+  final IconData data;
+  const WebIconButton({
+    Key key,
+    this.text,
+    this.data,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      IconButton(
+        icon: FaIcon(data, color: Theme.of(context).accentColor),
+      ),
+      SizedBox(width: 4),
+      TextButton(
+        onPressed: () {},
+        child: Text(text, style: Theme.of(context).textTheme.button),
+      ),
+    ]);
+  }
+}
+
+class WebButton extends StatelessWidget {
+  final String text;
+
+  const WebButton({
+    Key key,
+    this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        TextButton(
+          onPressed: () {},
+          child: Text(text, style: Theme.of(context).textTheme.button),
+        ),
+        IconButton(
+            onPressed: () {},
+            icon: Icon(CupertinoIcons.arrow_right,
+                color: Theme.of(context).accentColor))
+      ],
+    );
+  }
+}
+
+class DescriptionText extends StatelessWidget {
+  final String text;
+  const DescriptionText({
+    Key key,
+    this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoSizeText(text,
+        maxLines: 3,
+        style: Theme.of(context)
+            .textTheme
+            .headline6
+            .copyWith(color: Colors.white.withOpacity(0.8), height: 2.0));
+  }
+}
+
+class TitleText extends StatelessWidget {
+  final String text;
+  const TitleText({
+    Key key,
+    this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoSizeText(text,
+        maxLines: 2, style: Theme.of(context).textTheme.bodyText1);
+  }
+}
+
+class HeaderText extends StatelessWidget {
+  final String text;
+  const HeaderText({
+    Key key,
+    this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: Theme.of(context).textTheme.headline6.copyWith(
+          color: Colors.white.withOpacity(0.6),
+          fontWeight: FontWeight.w700,
+          letterSpacing: 2.0),
+    );
   }
 }
