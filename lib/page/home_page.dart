@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_web_portfoilio/model/menu_item.dart';
 import 'package:flutter_web_portfoilio/utils/const_string.dart';
+import 'package:flutter_web_portfoilio/utils/responsive_controller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,42 +20,146 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-          width: size.width,
-          height: size.height,
-          color: Theme.of(context).primaryColor,
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Image.asset('images/my_image.png'),
-              Container(
-                width: size.width,
-                height: size.height,
-                child: Row(
-                  children: [
-                    Container(
-                        width: size.width * 3 / 5,
-                        height: size.height * 3 / 4,
-                        child: Padding(
-                            padding: const EdgeInsets.only(left: 65, right: 65),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
+      appBar: PreferredSize(
+          preferredSize:
+              ResponsiveController.getScreenSize(size) == ScreenSize.small
+                  ? Size.fromHeight(50.0)
+                  : Size.fromHeight(0.0),
+          // here the desired height
+          child: AppBar(
+            centerTitle: true,
+            elevation: 0.0,
+            backgroundColor: Theme.of(context).primaryColor,
+            iconTheme: new IconThemeData(color: Colors.white),
+            // ...
+          )),
+      drawer: ResponsiveController.getScreenSize(size) == ScreenSize.small
+          ? Drawer(
+              child: Container(
+                  color: Theme.of(context).primaryColor,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(top: 30),
+                        child: Text('Reza Taghizadeh',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4
+                                .copyWith(
+                                    color: Theme.of(context).accentColor)),
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: _menuList.items.length,
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
+                              splashColor: Colors.yellow,
+                              child: Padding(
+                                padding: const EdgeInsets.all(14),
+                                child: Text(
+                                  _menuList.items[index].text,
+                                  style: Theme.of(context).textTheme.headline4,
+                                ),
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  Navigator.of(context).pop();
+                                });
+                              },
+                            );
+                          }),
+                    ],
+                  )),
+            )
+          : null,
+      body: buildBodyScreen(size, context),
+    );
+  }
+
+  Widget buildBodyScreen(Size size, BuildContext context) {
+    return Container(
+        width: size.width,
+        height: size.height,
+        color: Theme.of(context).primaryColor,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Visibility(
+                visible: ResponsiveController.getScreenSize(size) ==
+                    ScreenSize.large,
+                child: Image.asset('images/my_image.png')),
+            Container(
+              width: size.width,
+              height: size.height,
+              child: Row(
+                children: [
+                  Container(
+                      width: ResponsiveController.getScreenSize(size) ==
+                              ScreenSize.large
+                          ? size.width * 3 / 5
+                          : ResponsiveController.getScreenSize(size) ==
+                                  ScreenSize.medium
+                              ? size.width / 2
+                              : size.width,
+                      height: size.height * 3 / 4,
+                      child: Padding(
+                          padding: ResponsiveController.getScreenSize(size) ==
+                                  ScreenSize.small
+                              ? const EdgeInsets.only(left: 30, right: 30)
+                              : const EdgeInsets.only(left: 65, right: 65),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Visibility(
+                                visible:
+                                    ResponsiveController.getScreenSize(size) !=
+                                        ScreenSize.small,
+                                child: SizedBox(
                                   height: 80,
                                 ),
-                                Column(
+                              ),
+                              Visibility(
+                                visible:
+                                    ResponsiveController.getScreenSize(size) ==
+                                        ScreenSize.small,
+                                child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.circular(size.width / 10),
+                                    child: Image.asset(
+                                      'images/mobile_photo.jpg',
+                                      width: size.width / 5,
+                                      height: size.width / 5,
+                                      fit: BoxFit.fitHeight,
+                                    )),
+                              ),
+                              Container(
+                                width:
+                                    ResponsiveController.getScreenSize(size) ==
+                                            ScreenSize.large
+                                        ? size.width * 3 / 5
+                                        : ResponsiveController.getScreenSize(
+                                                    size) ==
+                                                ScreenSize.medium
+                                            ? size.width / 2
+                                            : size.width,
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'Reza \nTaghizadeh.',
+                                    AutoSizeText(
+                                      ConstString.fullName,
+                                      maxLines: 2,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText1
                                           .copyWith(
                                             fontWeight: FontWeight.w800,
-                                            fontSize: 87,
+                                            fontSize: ResponsiveController
+                                                        .getScreenSize(size) ==
+                                                    ScreenSize.small
+                                                ? 45
+                                                : 87,
                                             height: 0.9,
                                           ),
                                     ),
@@ -66,33 +172,57 @@ class _HomePageState extends State<HomePage> {
                                         color: Theme.of(context).accentColor),
                                   ],
                                 ),
-                                Row(children: [
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.github,
-                                      color: Colors.white,
+                              ),
+                              Visibility(
+                                visible:
+                                    ResponsiveController.getScreenSize(size) ==
+                                        ScreenSize.small,
+                                child: AutoSizeText(
+                                    'Flutter, Android and IOS Developer',
+                                    maxLines: 2,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1),
+                              ),
+                              Row(
+                                  mainAxisAlignment:
+                                      ResponsiveController.getScreenSize(
+                                                  size) ==
+                                              ScreenSize.small
+                                          ? MainAxisAlignment.center
+                                          : MainAxisAlignment.start,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.github,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.linkedinIn,
-                                      color: Colors.white,
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.linkedinIn,
+                                        color: Colors.white,
+                                      ),
                                     ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.twitter,
-                                      color: Colors.white,
-                                    ),
-                                  )
-                                ])
-                              ],
-                            ))),
-                    Container(
-                      width: size.width * 2 / 5,
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: FaIcon(
+                                        FontAwesomeIcons.twitter,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  ])
+                            ],
+                          ))),
+                  Visibility(
+                    visible: ResponsiveController.getScreenSize(size) !=
+                        ScreenSize.small,
+                    child: Container(
+                      width: ResponsiveController.getScreenSize(size) ==
+                              ScreenSize.large
+                          ? size.width * 2 / 5
+                          : size.width / 2,
                       height: size.height * 3 / 4,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 65, right: 65),
@@ -102,8 +232,10 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Container(
                               height: 80,
+                              width: size.width * 2 / 5,
                               child: ListView.builder(
-                                  shrinkWrap: true,
+                                  shrinkWrap: false,
+                                  physics: NeverScrollableScrollPhysics(),
                                   itemCount: _menuList.items.length,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder:
@@ -164,12 +296,13 @@ class _HomePageState extends State<HomePage> {
                                           letterSpacing: 2.0),
                                 ),
                                 SizedBox(height: 16),
-                                Text('Flutter, Android and IOS Developer',
+                                AutoSizeText(ConstString.jobTitle,
+                                    maxLines: 2,
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                                 SizedBox(height: 36),
-                                Text(
-                                    'My Name Is Reza and I have 11 years of experience in different aspects of computer science. I like my job and also I think I am in love with flutter.',
+                                AutoSizeText(ConstString.description,
+                                    maxLines: 3,
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline6
@@ -197,11 +330,11 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          )),
-    );
+            ),
+          ],
+        ));
   }
 }
