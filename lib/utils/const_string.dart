@@ -8,7 +8,8 @@ class ConstString {
   static String jobTitle = 'Flutter, Android and IOS Developer';
 
   static String description =
-      'My Name Is Reza and I have 11 years of experience in different aspects of computer science. I like my job and also I think I am in love with flutter.';
-
+      'I am a mobile developer with robust problem-solving skills and proven experience in mobile developing in a test-driven environment with more than 11 years experiences.';
+  static String contactDescription =
+      'If you have any question about my resume, request to start cooperation, ask something about developing, or my learning videos, please contact me';
   static String fullName = 'Reza \nTaghizadeh.';
 }
