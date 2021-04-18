@@ -358,10 +358,99 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ]),
               )),
-          Container(width: size.width / 2, height: size.height),
+          Container(
+            width: size.width / 2,
+            height: size.height,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 150, vertical: 150),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  HeaderText(text: '-Professional Skills'),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SkillObject(
+                        title: 'Programming:',
+                        skills: 'Flutter, Dart, Android Java, Swift',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SkillObject(
+                        title: 'Coding Architecture:',
+                        skills:
+                            'Bloc, Provider, Clean Architecture, MVP, MVVM, MVC',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SkillObject(
+                        title: 'Management Tools:',
+                        skills: 'Trello, Notion, Jira, Taiga',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SkillObject(
+                        title: 'Database ORM:',
+                        skills: 'SQfentity, Realm, Room',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SkillObject(
+                        title: 'Usage Technology',
+                        skills:
+                            'Design patterns, Restful, SOAP, Socket programming, Firebase Services, Dagger2, Rxjava',
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
+  }
+}
+
+class SkillObject extends StatelessWidget {
+  final String title;
+  final String skills;
+  const SkillObject({
+    Key key,
+    this.title,
+    this.skills,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                child: Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Theme.of(context).accentColor),
+                ),
+              ),
+              SizedBox(width: 4),
+              SubTitleText(text: title),
+            ],
+          ),
+          DescriptionText(text: skills)
+        ]);
   }
 }
 
@@ -443,6 +532,20 @@ class TitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoSizeText(text,
         maxLines: 2, style: Theme.of(context).textTheme.bodyText1);
+  }
+}
+
+class SubTitleText extends StatelessWidget {
+  final String text;
+  const SubTitleText({
+    Key key,
+    this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoSizeText(text,
+        maxLines: 2, style: Theme.of(context).textTheme.bodyText2);
   }
 }
 
