@@ -5,6 +5,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_web_portfoilio/model/menu_item.dart';
 import 'package:flutter_web_portfoilio/utils/const_string.dart';
 import 'package:flutter_web_portfoilio/utils/responsive_controller.dart';
+import 'package:flutter_web_portfoilio/widget/description_text_widget.dart';
+import 'package:flutter_web_portfoilio/widget/header_text_widget.dart';
+import 'package:flutter_web_portfoilio/widget/skill_object_widget.dart';
+import 'package:flutter_web_portfoilio/widget/small_title_text_widget.dart';
+import 'package:flutter_web_portfoilio/widget/small_web_icon_button_widget.dart';
+import 'package:flutter_web_portfoilio/widget/title_text_widget.dart';
+import 'package:flutter_web_portfoilio/widget/web_button_widget.dart';
+import 'package:flutter_web_portfoilio/widget/web_icon_button_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -90,7 +98,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildHomePage(Size size, BuildContext context) {
-    print(size);
     return Container(
         width: size.width,
         constraints: BoxConstraints(
@@ -167,7 +174,8 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ],
                                 ),
-                                SmallTitleText(text: ConstString.jobTitleSmall),
+                                SmallTitleTextWidget(
+                                    text: ConstString.jobTitleSmall),
                                 Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -356,18 +364,19 @@ class _HomePageState extends State<HomePage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                HeaderText(
+                                HeaderTextWidget(
                                   text: '- Introduction',
                                 ),
                                 SizedBox(height: 16),
-                                TitleText(
+                                TitleTextWidget(
                                   text: ConstString.jobTitle,
                                 ),
                                 SizedBox(height: 36),
-                                DescriptionText(text: ConstString.description),
+                                DescriptionTextWidget(
+                                    text: ConstString.description),
                               ],
                             ),
-                            WebButton(text: 'My Story'),
+                            WebButtonWidget(text: 'My Story'),
                           ],
                         ),
                       ),
@@ -405,28 +414,28 @@ class _HomePageState extends State<HomePage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                HeaderText(text: '- Contact'),
+                                HeaderTextWidget(text: '- Contact'),
                                 SizedBox(height: 16),
-                                TitleText(
+                                TitleTextWidget(
                                     text: 'Any Type Of Query & Discussion'),
                               ],
                             ),
-                            DescriptionText(
+                            DescriptionTextWidget(
                                 text: ConstString.contactDescription),
                             Visibility(
                               visible: !isMedium,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  WebIconButton(
+                                  WebIconButtonWidget(
                                     text: 'Alirezataghizadeh66@gmail.com',
                                     data: FontAwesomeIcons.envelope,
                                   ),
-                                  WebIconButton(
+                                  WebIconButtonWidget(
                                     text: '+905366526420',
                                     data: FontAwesomeIcons.whatsapp,
                                   ),
-                                  WebIconButton(
+                                  WebIconButtonWidget(
                                     text: 'alirezat_66',
                                     data: FontAwesomeIcons.telegram,
                                   )
@@ -438,15 +447,15 @@ class _HomePageState extends State<HomePage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SmallWebIconButton(
+                                  SmallWebIconButtonWidget(
                                     text: 'Alirezataghizadeh66@gmail.com',
                                     data: FontAwesomeIcons.envelope,
                                   ),
-                                  SmallWebIconButton(
+                                  SmallWebIconButtonWidget(
                                     text: '+905366526420',
                                     data: FontAwesomeIcons.whatsapp,
                                   ),
-                                  SmallWebIconButton(
+                                  SmallWebIconButtonWidget(
                                     text: 'alirezat_66',
                                     data: FontAwesomeIcons.telegram,
                                   )
@@ -467,18 +476,18 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        HeaderText(text: '-Professional Skills'),
+                        HeaderTextWidget(text: '-Professional Skills'),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Programming:',
                               skills: 'Flutter, Dart, Android Java, Swift',
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Coding Architecture:',
                               skills:
                                   'Bloc, Provider, Clean Architecture, MVP, MVVM, MVC',
@@ -486,21 +495,21 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               height: 20,
                             ),
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Management Tools:',
                               skills: 'Trello, Notion, Jira, Taiga',
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Database ORM:',
                               skills: 'SQfentity, Realm, Room',
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Usage Technology',
                               skills:
                                   'Design patterns, Restful, SOAP, Socket programming, Firebase Services, Dagger2, Rxjava',
@@ -528,26 +537,26 @@ class _HomePageState extends State<HomePage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                HeaderText(text: '- Contact'),
+                                HeaderTextWidget(text: '- Contact'),
                                 SizedBox(height: 16),
-                                TitleText(
+                                TitleTextWidget(
                                     text: 'Any Type Of Query & Discussion'),
                               ],
                             ),
-                            DescriptionText(
+                            DescriptionTextWidget(
                                 text: ConstString.contactDescription),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SmallWebIconButton(
+                                SmallWebIconButtonWidget(
                                   text: 'Alirezataghizadeh66@gmail.com',
                                   data: FontAwesomeIcons.envelope,
                                 ),
-                                SmallWebIconButton(
+                                SmallWebIconButtonWidget(
                                   text: '+905366526420',
                                   data: FontAwesomeIcons.whatsapp,
                                 ),
-                                SmallWebIconButton(
+                                SmallWebIconButtonWidget(
                                   text: 'alirezat_66',
                                   data: FontAwesomeIcons.telegram,
                                 )
@@ -564,18 +573,18 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        HeaderText(text: '-Professional Skills'),
+                        HeaderTextWidget(text: '-Professional Skills'),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Programming:',
                               skills: 'Flutter, Dart, Android Java, Swift',
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Coding Architecture:',
                               skills:
                                   'Bloc, Provider, Clean Architecture, MVP, MVVM, MVC',
@@ -583,21 +592,21 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               height: 20,
                             ),
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Management Tools:',
                               skills: 'Trello, Notion, Jira, Taiga',
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Database ORM:',
                               skills: 'SQfentity, Realm, Room',
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            SkillObject(
+                            SkillObjectWidget(
                               title: 'Usage Technology',
                               skills:
                                   'Design patterns, Restful, SOAP, Socket programming, Firebase Services, Dagger2, Rxjava',
@@ -610,203 +619,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-    );
-  }
-}
-
-class SkillObject extends StatelessWidget {
-  final String title;
-  final String skills;
-  const SkillObject({
-    Key key,
-    this.title,
-    this.skills,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Container(
-                  width: 10,
-                  height: 10,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Theme.of(context).accentColor),
-                ),
-              ),
-              SizedBox(width: 4),
-              SubTitleText(text: title),
-            ],
-          ),
-          DescriptionText(text: skills)
-        ]);
-  }
-}
-
-class WebIconButton extends StatelessWidget {
-  final String text;
-  final IconData data;
-  const WebIconButton({
-    Key key,
-    this.text,
-    this.data,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(children: [
-      IconButton(
-        icon: FaIcon(data, color: Theme.of(context).accentColor),
-      ),
-      SizedBox(width: 4),
-      TextButton(
-        onPressed: () {},
-        child: Text(text, style: Theme.of(context).textTheme.button),
-      ),
-    ]);
-  }
-}
-
-class SmallWebIconButton extends StatelessWidget {
-  final String text;
-  final IconData data;
-  const SmallWebIconButton({
-    Key key,
-    this.text,
-    this.data,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(children: [
-      IconButton(
-        icon: FaIcon(data, color: Theme.of(context).accentColor),
-      ),
-      SizedBox(width: 4),
-      TextButton(
-        onPressed: () {},
-        child: Text(text,
-            style: Theme.of(context).textTheme.button.copyWith(fontSize: 14)),
-      ),
-    ]);
-  }
-}
-
-class WebButton extends StatelessWidget {
-  final String text;
-
-  const WebButton({
-    Key key,
-    this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        TextButton(
-          onPressed: () {},
-          child: AutoSizeText(
-            text,
-            style: Theme.of(context).textTheme.button,
-            maxLines: 1,
-          ),
-        ),
-        IconButton(
-            onPressed: () {},
-            icon: Icon(CupertinoIcons.arrow_right,
-                color: Theme.of(context).accentColor))
-      ],
-    );
-  }
-}
-
-class DescriptionText extends StatelessWidget {
-  final String text;
-  const DescriptionText({
-    Key key,
-    this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AutoSizeText(text,
-        maxLines: 3,
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            .copyWith(color: Colors.white.withOpacity(0.8), height: 2.0));
-  }
-}
-
-class TitleText extends StatelessWidget {
-  final String text;
-  const TitleText({
-    Key key,
-    this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AutoSizeText(text,
-        maxLines: 2, style: Theme.of(context).textTheme.bodyText1);
-  }
-}
-
-class SmallTitleText extends StatelessWidget {
-  final String text;
-  const SmallTitleText({
-    Key key,
-    this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AutoSizeText(text,
-        maxLines: 2,
-        style: Theme.of(context).textTheme.bodyText1.copyWith(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ));
-  }
-}
-
-class SubTitleText extends StatelessWidget {
-  final String text;
-  const SubTitleText({
-    Key key,
-    this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AutoSizeText(text,
-        maxLines: 2, style: Theme.of(context).textTheme.bodyText2);
-  }
-}
-
-class HeaderText extends StatelessWidget {
-  final String text;
-  const HeaderText({
-    Key key,
-    this.text,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.headline6.copyWith(
-          color: Colors.white.withOpacity(0.6),
-          fontWeight: FontWeight.w700,
-          letterSpacing: 2.0),
     );
   }
 }
