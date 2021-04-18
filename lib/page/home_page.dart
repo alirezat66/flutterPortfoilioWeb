@@ -15,6 +15,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   MenuList _menuList = MenuList();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,9 +90,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildHomePage(Size size, BuildContext context) {
+    print(size);
     return Container(
         width: size.width,
-        height: size.height,
+        constraints: BoxConstraints(
+          minHeight: size.height,
+        ),
         color: Theme.of(context).primaryColor,
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -98,126 +106,182 @@ class _HomePageState extends State<HomePage> {
                 child: Image.asset('images/my_image.png')),
             Container(
               width: size.width,
-              height: size.height,
               child: Row(
                 children: [
-                  Container(
-                      width: ResponsiveController.getScreenSize(size) ==
-                              ScreenSize.large
-                          ? size.width * 3 / 5
-                          : ResponsiveController.getScreenSize(size) ==
-                                  ScreenSize.medium
-                              ? size.width / 2
-                              : size.width,
-                      height: size.height * 3 / 4,
-                      child: Padding(
-                          padding: ResponsiveController.getScreenSize(size) ==
-                                  ScreenSize.small
-                              ? const EdgeInsets.only(left: 30, right: 30)
-                              : const EdgeInsets.only(left: 65, right: 65),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Visibility(
-                                visible:
-                                    ResponsiveController.getScreenSize(size) !=
-                                        ScreenSize.small,
-                                child: SizedBox(
-                                  height: 80,
-                                ),
-                              ),
-                              Visibility(
-                                visible:
-                                    ResponsiveController.getScreenSize(size) ==
-                                        ScreenSize.small,
-                                child: ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.circular(size.width / 10),
-                                    child: Image.asset(
-                                      'images/mobile_photo.jpg',
-                                      width: size.width / 5,
-                                      height: size.width / 5,
-                                      fit: BoxFit.fitHeight,
-                                    )),
-                              ),
-                              Container(
-                                width:
-                                    ResponsiveController.getScreenSize(size) ==
-                                            ScreenSize.large
-                                        ? size.width * 3 / 5
-                                        : ResponsiveController.getScreenSize(
-                                                    size) ==
-                                                ScreenSize.medium
-                                            ? size.width / 2
-                                            : size.width,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                  Visibility(
+                    visible: ResponsiveController.getScreenSize(size) ==
+                        ScreenSize.small,
+                    child: Container(
+                        width: size.width,
+                        constraints: BoxConstraints(
+                          minHeight: size.height,
+                        ),
+                        child: Padding(
+                            padding: EdgeInsets.only(
+                                left: size.width / 25, right: size.width / 25),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Column(
                                   children: [
-                                    AutoSizeText(
-                                      ConstString.fullName,
-                                      maxLines: 2,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .copyWith(
-                                            fontWeight: FontWeight.w800,
-                                            fontSize: ResponsiveController
-                                                        .getScreenSize(size) ==
-                                                    ScreenSize.small
-                                                ? 45
-                                                : 87,
-                                            height: 0.9,
-                                          ),
-                                    ),
+                                    ClipRRect(
+                                        borderRadius: BorderRadius.circular(
+                                            size.width / 3),
+                                        child: Image.asset(
+                                          'images/mobile_photo.jpg',
+                                          width: size.width / 3,
+                                          height: size.width / 3,
+                                          fit: BoxFit.fitHeight,
+                                        )),
                                     SizedBox(
-                                      height: 24,
+                                      height: 20,
                                     ),
                                     Container(
-                                        width: 100,
-                                        height: 10,
-                                        color: Theme.of(context).accentColor),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          AutoSizeText(
+                                            ConstString.fullName,
+                                            maxLines: 2,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 40,
+                                                  height: 0.9,
+                                                ),
+                                          ),
+                                          SizedBox(
+                                            height: 12,
+                                          ),
+                                          Container(
+                                              width: 40,
+                                              height: 5,
+                                              color: Theme.of(context)
+                                                  .accentColor),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
-                              ),
-                              Visibility(
-                                visible:
-                                    ResponsiveController.getScreenSize(size) ==
-                                        ScreenSize.small,
-                                child: TitleText(text: ConstString.jobTitle),
-                              ),
-                              Row(
-                                  mainAxisAlignment:
-                                      ResponsiveController.getScreenSize(
-                                                  size) ==
-                                              ScreenSize.small
-                                          ? MainAxisAlignment.center
-                                          : MainAxisAlignment.start,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: FaIcon(
-                                        FontAwesomeIcons.github,
-                                        color: Colors.white,
+                                SmallTitleText(text: ConstString.jobTitleSmall),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.github,
+                                          color: Colors.white,
+                                        ),
                                       ),
-                                    ),
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: FaIcon(
-                                        FontAwesomeIcons.linkedinIn,
-                                        color: Colors.white,
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.linkedinIn,
+                                          color: Colors.white,
+                                        ),
                                       ),
-                                    ),
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: FaIcon(
-                                        FontAwesomeIcons.twitter,
-                                        color: Colors.white,
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.twitter,
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    ])
+                              ],
+                            ))),
+                  ),
+                  Visibility(
+                    visible: ResponsiveController.getScreenSize(size) !=
+                        ScreenSize.small,
+                    child: Container(
+                        width: ResponsiveController.getScreenSize(size) ==
+                                ScreenSize.large
+                            ? size.width * 3 / 5
+                            : size.width / 2,
+                        constraints: BoxConstraints(
+                          minHeight: size.height * 3 / 4,
+                        ),
+                        child: Padding(
+                            padding: EdgeInsets.only(
+                                left: size.width / 25, right: size.width / 25),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 80,
+                                ),
+                                Container(
+                                  width: ResponsiveController.getScreenSize(
+                                              size) ==
+                                          ScreenSize.large
+                                      ? size.width * 3 / 5
+                                      : size.width / 2,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      AutoSizeText(
+                                        ConstString.fullName,
+                                        maxLines: 2,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1
+                                            .copyWith(
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: ResponsiveController
+                                                          .getScreenSize(
+                                                              size) ==
+                                                      ScreenSize.small
+                                                  ? 45
+                                                  : 87,
+                                              height: 0.9,
+                                            ),
                                       ),
-                                    )
-                                  ])
-                            ],
-                          ))),
+                                      SizedBox(
+                                        height: 24,
+                                      ),
+                                      Container(
+                                          width: 100,
+                                          height: 10,
+                                          color: Theme.of(context).accentColor),
+                                    ],
+                                  ),
+                                ),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.github,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.linkedinIn,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.twitter,
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    ])
+                              ],
+                            ))),
+                  ),
                   Visibility(
                     visible: ResponsiveController.getScreenSize(size) !=
                         ScreenSize.small,
@@ -226,9 +290,12 @@ class _HomePageState extends State<HomePage> {
                               ScreenSize.large
                           ? size.width * 2 / 5
                           : size.width / 2,
-                      height: size.height * 3 / 4,
+                      constraints: BoxConstraints(
+                        minHeight: size.height * 3 / 4,
+                      ),
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 65, right: 65),
+                        padding: EdgeInsets.only(
+                            left: size.width / 25, right: size.width / 25),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -314,6 +381,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildSkillContactPage(Size size, BuildContext context) {
+    bool isMedium =
+        ResponsiveController.getScreenSize(size) == ScreenSize.medium;
     return Container(
       width: size.width,
       color: Theme.of(context).primaryColorDark,
@@ -322,10 +391,13 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Container(
                     width: size.width / 2,
-                    height: size.height,
+                    constraints: BoxConstraints(
+                      minHeight: size.height,
+                    ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 150, vertical: 150),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: size.width / 11,
+                          vertical: size.height / 6),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -341,31 +413,56 @@ class _HomePageState extends State<HomePage> {
                             ),
                             DescriptionText(
                                 text: ConstString.contactDescription),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                WebIconButton(
-                                  text: 'Alirezataghizadeh66@gmail.com',
-                                  data: FontAwesomeIcons.envelope,
-                                ),
-                                WebIconButton(
-                                  text: '+905366526420',
-                                  data: FontAwesomeIcons.whatsapp,
-                                ),
-                                WebIconButton(
-                                  text: 'alirezat_66',
-                                  data: FontAwesomeIcons.telegram,
-                                )
-                              ],
+                            Visibility(
+                              visible: !isMedium,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  WebIconButton(
+                                    text: 'Alirezataghizadeh66@gmail.com',
+                                    data: FontAwesomeIcons.envelope,
+                                  ),
+                                  WebIconButton(
+                                    text: '+905366526420',
+                                    data: FontAwesomeIcons.whatsapp,
+                                  ),
+                                  WebIconButton(
+                                    text: 'alirezat_66',
+                                    data: FontAwesomeIcons.telegram,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Visibility(
+                              visible: isMedium,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SmallWebIconButton(
+                                    text: 'Alirezataghizadeh66@gmail.com',
+                                    data: FontAwesomeIcons.envelope,
+                                  ),
+                                  SmallWebIconButton(
+                                    text: '+905366526420',
+                                    data: FontAwesomeIcons.whatsapp,
+                                  ),
+                                  SmallWebIconButton(
+                                    text: 'alirezat_66',
+                                    data: FontAwesomeIcons.telegram,
+                                  )
+                                ],
+                              ),
                             ),
                           ]),
                     )),
                 Container(
                   width: size.width / 2,
-                  height: size.height,
+                  constraints: BoxConstraints(
+                    minHeight: size.height,
+                  ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 150, vertical: 150),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: size.width / 11, vertical: size.height / 6),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -616,7 +713,11 @@ class WebButton extends StatelessWidget {
       children: [
         TextButton(
           onPressed: () {},
-          child: Text(text, style: Theme.of(context).textTheme.button),
+          child: AutoSizeText(
+            text,
+            style: Theme.of(context).textTheme.button,
+            maxLines: 1,
+          ),
         ),
         IconButton(
             onPressed: () {},
@@ -656,6 +757,24 @@ class TitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoSizeText(text,
         maxLines: 2, style: Theme.of(context).textTheme.bodyText1);
+  }
+}
+
+class SmallTitleText extends StatelessWidget {
+  final String text;
+  const SmallTitleText({
+    Key key,
+    this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AutoSizeText(text,
+        maxLines: 2,
+        style: Theme.of(context).textTheme.bodyText1.copyWith(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ));
   }
 }
 

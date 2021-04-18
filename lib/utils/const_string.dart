@@ -6,6 +6,7 @@ class ConstString {
   static String menuContact = 'Contact';
 
   static String jobTitle = 'Flutter, Android and IOS Developer';
+  static String jobTitleSmall = 'Flutter, Android and \nIOS Developer';
 
   static String description =
       'I am a mobile developer with robust problem-solving skills and proven experience in mobile developing in a test-driven environment with more than 11 years experiences.';
