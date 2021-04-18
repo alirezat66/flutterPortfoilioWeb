@@ -316,104 +316,203 @@ class _HomePageState extends State<HomePage> {
   Widget buildSkillContactPage(Size size, BuildContext context) {
     return Container(
       width: size.width,
-      height: size.height,
       color: Theme.of(context).primaryColorDark,
-      child: Row(
-        children: [
-          Container(
-              width: size.width / 2,
-              height: size.height,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 150, vertical: 150),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          HeaderText(text: '- Contact'),
-                          SizedBox(height: 16),
-                          TitleText(text: 'Any Type Of Query & Discussion'),
-                        ],
-                      ),
-                      DescriptionText(text: ConstString.contactDescription),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          WebIconButton(
-                            text: 'Alirezataghizadeh66@gmail.com',
-                            data: FontAwesomeIcons.envelope,
-                          ),
-                          WebIconButton(
-                            text: '+905366526420',
-                            data: FontAwesomeIcons.whatsapp,
-                          ),
-                          WebIconButton(
-                            text: 'alirezat_66',
-                            data: FontAwesomeIcons.telegram,
-                          )
-                        ],
-                      ),
-                    ]),
-              )),
-          Container(
-            width: size.width / 2,
-            height: size.height,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 150, vertical: 150),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  HeaderText(text: '-Professional Skills'),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SkillObject(
-                        title: 'Programming:',
-                        skills: 'Flutter, Dart, Android Java, Swift',
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SkillObject(
-                        title: 'Coding Architecture:',
-                        skills:
-                            'Bloc, Provider, Clean Architecture, MVP, MVVM, MVC',
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SkillObject(
-                        title: 'Management Tools:',
-                        skills: 'Trello, Notion, Jira, Taiga',
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SkillObject(
-                        title: 'Database ORM:',
-                        skills: 'SQfentity, Realm, Room',
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SkillObject(
-                        title: 'Usage Technology',
-                        skills:
-                            'Design patterns, Restful, SOAP, Socket programming, Firebase Services, Dagger2, Rxjava',
-                      ),
-                    ],
+      child: ResponsiveController.getScreenSize(size) != ScreenSize.small
+          ? Row(
+              children: [
+                Container(
+                    width: size.width / 2,
+                    height: size.height,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 150, vertical: 150),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HeaderText(text: '- Contact'),
+                                SizedBox(height: 16),
+                                TitleText(
+                                    text: 'Any Type Of Query & Discussion'),
+                              ],
+                            ),
+                            DescriptionText(
+                                text: ConstString.contactDescription),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                WebIconButton(
+                                  text: 'Alirezataghizadeh66@gmail.com',
+                                  data: FontAwesomeIcons.envelope,
+                                ),
+                                WebIconButton(
+                                  text: '+905366526420',
+                                  data: FontAwesomeIcons.whatsapp,
+                                ),
+                                WebIconButton(
+                                  text: 'alirezat_66',
+                                  data: FontAwesomeIcons.telegram,
+                                )
+                              ],
+                            ),
+                          ]),
+                    )),
+                Container(
+                  width: size.width / 2,
+                  height: size.height,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 150, vertical: 150),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        HeaderText(text: '-Professional Skills'),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SkillObject(
+                              title: 'Programming:',
+                              skills: 'Flutter, Dart, Android Java, Swift',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SkillObject(
+                              title: 'Coding Architecture:',
+                              skills:
+                                  'Bloc, Provider, Clean Architecture, MVP, MVVM, MVC',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SkillObject(
+                              title: 'Management Tools:',
+                              skills: 'Trello, Notion, Jira, Taiga',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SkillObject(
+                              title: 'Database ORM:',
+                              skills: 'SQfentity, Realm, Room',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SkillObject(
+                              title: 'Usage Technology',
+                              skills:
+                                  'Design patterns, Restful, SOAP, Socket programming, Firebase Services, Dagger2, Rxjava',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
+            )
+          : Column(
+              children: [
+                Container(
+                    width: size.width,
+                    height: size.height,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 30),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HeaderText(text: '- Contact'),
+                                SizedBox(height: 16),
+                                TitleText(
+                                    text: 'Any Type Of Query & Discussion'),
+                              ],
+                            ),
+                            DescriptionText(
+                                text: ConstString.contactDescription),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SmallWebIconButton(
+                                  text: 'Alirezataghizadeh66@gmail.com',
+                                  data: FontAwesomeIcons.envelope,
+                                ),
+                                SmallWebIconButton(
+                                  text: '+905366526420',
+                                  data: FontAwesomeIcons.whatsapp,
+                                ),
+                                SmallWebIconButton(
+                                  text: 'alirezat_66',
+                                  data: FontAwesomeIcons.telegram,
+                                )
+                              ],
+                            ),
+                          ]),
+                    )),
+                Container(
+                  height: size.height,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        HeaderText(text: '-Professional Skills'),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SkillObject(
+                              title: 'Programming:',
+                              skills: 'Flutter, Dart, Android Java, Swift',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SkillObject(
+                              title: 'Coding Architecture:',
+                              skills:
+                                  'Bloc, Provider, Clean Architecture, MVP, MVVM, MVC',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SkillObject(
+                              title: 'Management Tools:',
+                              skills: 'Trello, Notion, Jira, Taiga',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SkillObject(
+                              title: 'Database ORM:',
+                              skills: 'SQfentity, Realm, Room',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SkillObject(
+                              title: 'Usage Technology',
+                              skills:
+                                  'Design patterns, Restful, SOAP, Socket programming, Firebase Services, Dagger2, Rxjava',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -473,6 +572,31 @@ class WebIconButton extends StatelessWidget {
       TextButton(
         onPressed: () {},
         child: Text(text, style: Theme.of(context).textTheme.button),
+      ),
+    ]);
+  }
+}
+
+class SmallWebIconButton extends StatelessWidget {
+  final String text;
+  final IconData data;
+  const SmallWebIconButton({
+    Key key,
+    this.text,
+    this.data,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      IconButton(
+        icon: FaIcon(data, color: Theme.of(context).accentColor),
+      ),
+      SizedBox(width: 4),
+      TextButton(
+        onPressed: () {},
+        child: Text(text,
+            style: Theme.of(context).textTheme.button.copyWith(fontSize: 14)),
       ),
     ]);
   }
