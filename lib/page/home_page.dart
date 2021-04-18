@@ -73,7 +73,14 @@ class _HomePageState extends State<HomePage> {
                   )),
             )
           : null,
-      body: buildBodyScreen(size, context),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            buildBodyScreen(size, context),
+            buildBodyScreen(size, context),
+          ],
+        ),
+      ),
     );
   }
 
